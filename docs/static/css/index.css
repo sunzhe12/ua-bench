@@ -10,7 +10,7 @@
   --background-primary: #ffffff;
   --background-secondary: #f8fafc;
   --background-accent: #f1f5f9;
-  --border-color: #e2e8f0;
+  --border-color: #d3edf5;
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
@@ -26,6 +26,12 @@
 /* Smooth scrolling for better UX */
 html {
   scroll-behavior: smooth;
+  /* ocean gradient on the canvas itself so the water never runs out
+     (Bulma paints html white; body backgrounds do not propagate past it) */
+  background:
+    radial-gradient(1100px 460px at 50% -190px, rgba(34, 211, 238, 0.13), transparent 70%),
+    linear-gradient(180deg, #f0fdff 0%, #e4fbff 28%, #f5feff 58%, #e9faff 100%);
+  background-attachment: fixed;
 }
 
 body {
@@ -33,7 +39,10 @@ body {
   color: var(--text-primary);
   line-height: 1.6;
   font-size: 16px;
-  background-color: var(--background-primary);
+  background:
+    radial-gradient(1100px 460px at 50% -190px, rgba(34, 211, 238, 0.13), transparent 70%),
+    linear-gradient(180deg, #f0fdff 0%, #e4fbff 28%, #f5feff 58%, #e9faff 100%);
+  background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -93,10 +102,86 @@ body {
   overflow: hidden;
 }
 
+/* Sea-surface gradient + faint sonar rings echoing the favicon */
+.hero.has-backdrop {
+  background:
+    radial-gradient(760px 340px at 78% -140px, rgba(34, 211, 238, 0.16), transparent 70%),
+    radial-gradient(900px 420px at 50% -180px, rgba(165, 243, 252, 0.5), transparent 72%),
+    linear-gradient(180deg, #f2feff 0%, #e2fbff 42%, #cdf3fd 100%);
+}
+
+.hero.has-backdrop::before,
+.hero.has-backdrop::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.hero.has-backdrop::before {
+  top: -140px;
+  right: -130px;
+  width: 460px;
+  height: 460px;
+  background: repeating-radial-gradient(circle at 50% 50%, transparent 0 30px, rgba(14, 116, 144, 0.055) 30px 31px);
+}
+
+.hero.has-backdrop::after {
+  bottom: 130px;
+  left: -150px;
+  width: 380px;
+  height: 380px;
+  background: repeating-radial-gradient(circle at 50% 50%, transparent 0 26px, rgba(14, 116, 144, 0.045) 26px 27px);
+}
+
+/* keep hero content above the decorations */
+.hero.has-backdrop .hero-body {
+  position: relative;
+  z-index: 2;
+}
+
+/* Layered waves at the bottom of the hero */
+.hero-waves {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 110px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero-waves .wave {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 200%;
+  height: 100%;
+  will-change: transform;
+}
+
+.hero-waves .wave-a { animation: wave-drift 24s linear infinite; }
+.hero-waves .wave-b { animation: wave-drift 18s linear infinite reverse; }
+.hero-waves .wave-c { animation: wave-drift 13s linear infinite; }
+
+@keyframes wave-drift {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-waves .wave { animation: none; }
+}
+
 .hero.is-light {
-  background: var(--background-secondary);
-  border-top: 1px solid var(--border-color);
-  border-bottom: 1px solid var(--border-color);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.62));
+  border-top: 1px solid rgba(103, 232, 249, 0.3);
+  border-bottom: 1px solid rgba(103, 232, 249, 0.3);
+}
+
+/* slightly deeper water behind the white example cards */
+.hero.is-deep {
+  background: linear-gradient(180deg, rgba(207, 250, 254, 0.55), rgba(165, 243, 252, 0.38));
 }
 
 .hero-body {
@@ -514,27 +599,37 @@ body {
   margin-bottom: 1.5rem;
 }
 
-/* Footer Improvements */
+/* Footer Improvements — deep-sea bookend */
 .footer {
-  background: var(--background-secondary);
-  border-top: 1px solid var(--border-color);
+  background: linear-gradient(135deg, #0e7490 0%, #155e75 55%, #164e63 100%);
+  border-top: 1px solid rgba(103, 232, 249, 0.35);
   padding: 3rem 1.5rem;
 }
 
 .footer .content {
-  color: var(--text-secondary);
+  color: rgba(236, 254, 255, 0.85);
   line-height: 1.7;
 }
 
 .footer a {
-  color: var(--primary-color);
+  color: #a5f3fc;
   text-decoration: none;
   transition: var(--transition);
 }
 
 .footer a:hover {
-  color: var(--primary-hover);
+  color: #ecfeff;
   text-decoration: underline;
+}
+
+.footer .icon-link {
+  color: rgba(236, 254, 255, 0.75);
+}
+
+.footer .icon-link:hover {
+  color: #ffffff;
+  text-decoration: none;
+  transition: var(--transition);
 }
 
 /* BibTeX Styling */
@@ -920,13 +1015,6 @@ a:focus {
 /* ---------------------------------------------------------------------------
    UA-Bench refinements
    --------------------------------------------------------------------------- */
-
-/* Hero — subtle depth-themed backdrop */
-.hero.has-backdrop {
-  background:
-    radial-gradient(1100px 400px at 50% -12%, #ecfeff 0%, rgba(236, 254, 255, 0) 70%),
-    var(--background-primary);
-}
 
 /* Teaser figure — framed and lifted off the page */
 .hero.teaser .hero-body img {

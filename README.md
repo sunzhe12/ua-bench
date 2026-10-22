@@ -8,9 +8,7 @@
 [![Project page](https://img.shields.io/badge/Project-Page-0e7490.svg)](https://sunzhe12.github.io/ua-bench/)
 [![Eval Data](https://img.shields.io/badge/Eval%20Data-2%2C600-0891b2.svg)](https://huggingface.co/datasets/zhesun12/water)
 [![Full Data](https://img.shields.io/badge/Full%20Data-375%2C051-155e75.svg)](https://huggingface.co/datasets/zhesun12/water_all)
-[![Tests](https://img.shields.io/badge/Tests-41%20passing-0f766e.svg)](#tests)
 [![License](https://img.shields.io/badge/License-MIT-2da44e.svg)](LICENSE)
-[![GitHub stars](https://img.shields.io/github/stars/sunzhe12/ua-bench?style=social)](https://github.com/sunzhe12/ua-bench/stargazers)
 
 </div>
 
