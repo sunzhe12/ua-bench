@@ -478,7 +478,7 @@ body {
 
 .example-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(258px, 1fr));
   gap: 1.1rem;
 }
 
@@ -1016,6 +1016,13 @@ a:focus {
    UA-Bench refinements
    --------------------------------------------------------------------------- */
 
+/* Wider content column. Bulma caps .container.is-max-desktop at 1152px no
+   matter how wide the viewport is, which leaves a large empty band on both
+   sides of 1440px+ screens and squeezes the abstract into a narrow column.
+   1320px fills a 1440px viewport edge-to-edge (60px gutters) while still
+   keeping a readable measure on very wide monitors. */
+.container.is-max-desktop { max-width: 1320px; }
+
 /* Teaser figure — framed and lifted off the page */
 .hero.teaser .hero-body img {
   border-radius: var(--border-radius-lg);
@@ -1024,10 +1031,13 @@ a:focus {
   background: #ffffff;
 }
 
-/* Abstract — narrower measure with an accent rule */
+/* Abstract — full-width block set in two columns so it fills the page
+   without turning into a narrow, very tall column of text */
 .abstract-block {
   position: relative;
   padding-left: 1.5rem;
+  columns: 2;
+  column-gap: 3rem;
 }
 .abstract-block::before {
   content: "";
@@ -1043,6 +1053,11 @@ a:focus {
   font-size: 1.0625rem;
   line-height: 1.85;
   color: #334155;
+}
+
+/* one column on narrow screens (tablets and phones) */
+@media screen and (max-width: 900px) {
+  .abstract-block { columns: 1; }
 }
 
 /* Key metrics grid */
@@ -1117,7 +1132,7 @@ a:focus {
   display: flex;
   align-items: center;
   height: 100%;
-  max-width: 1152px;
+  max-width: 1320px;
   margin: 0 auto;
   padding: 0 24px;
   gap: 24px;

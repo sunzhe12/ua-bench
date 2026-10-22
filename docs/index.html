@@ -279,33 +279,29 @@
   <!-- Paper abstract -->
   <section class="section hero is-light">
     <div class="container is-max-desktop">
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          <h2 class="title is-3">Abstract</h2>
-          <div class="content has-text-justified abstract-block">
-            <p>
-              Large audio-language models (LALMs) are fast becoming a general interface to sound, yet how far their
-              broad pretraining carries into specialized domains remains largely open. Underwater acoustics is a case in
-              point. Vessel monitoring, maritime safety, and ocean sensing all depend on recognizing underwater signals,
-              but to our knowledge LALMs have not been systematically evaluated on them. Building a benchmark for this
-              setting is not straightforward. Annotated recordings are costly to collect, and a faithful synthetic alternative
-              has to bring together many interacting factors: the structure of detection pulses, communication waveforms,
-              and ship-radiated noise, and the sound-speed profile, geometry, and multipath propagation through which
-              each reaches the receiver. We address this by proposing UA-Bench, to our knowledge the first
-              large-scale benchmark for evaluating LALMs on underwater acoustic signal recognition. It comprises
-              375,051 audio records that couple parameterized sources with modeled propagation, so that every record
-              can be traced to the conditions that produced it. The records span these three signal families, and each carries a three-level label
-              hierarchy (13 leaf classes), a templated multi-turn dialogue, and source and channel metadata. We evaluate
-              on a balanced 2,600-record subset with a gated coarse-to-fine protocol that locates each error at source
-              routing, fine-grained classification, or output format, and add a paired silent-audio control to test whether
-              the waveform is actually used. Nine open LALMs, evaluated without task-specific adaptation, reach only
-              2.0%&ndash;13.1% leaf accuracy, against a random reference of 7.7%. The waveform helps source routing far
-              more than leaf recognition (for one model, +29.5 versus +2.3 points over silence), and just four models gain
-              reliably at the leaf level, by at most 4.7 points. UA-Bench thus gives a reference point for these models, and
-              its released training partition supports follow-up adaptation work.
-            </p>
-          </div>
-        </div>
+      <h2 class="title is-3 has-text-centered">Abstract</h2>
+      <div class="content has-text-justified abstract-block">
+        <p>
+          Large audio-language models (LALMs) are fast becoming a general interface to sound, yet how far their
+          broad pretraining carries into specialized domains remains largely open. Underwater acoustics is a case in
+          point. Vessel monitoring, maritime safety, and ocean sensing all depend on recognizing underwater signals,
+          but to our knowledge LALMs have not been systematically evaluated on them. Building a benchmark for this
+          setting is not straightforward. Annotated recordings are costly to collect, and a faithful synthetic alternative
+          has to bring together many interacting factors: the structure of detection pulses, communication waveforms,
+          and ship-radiated noise, and the sound-speed profile, geometry, and multipath propagation through which
+          each reaches the receiver. We address this by proposing UA-Bench, to our knowledge the first
+          large-scale benchmark for evaluating LALMs on underwater acoustic signal recognition. It comprises
+          375,051 audio records that couple parameterized sources with modeled propagation, so that every record
+          can be traced to the conditions that produced it. The records span these three signal families, and each carries a three-level label
+          hierarchy (13 leaf classes), a templated multi-turn dialogue, and source and channel metadata. We evaluate
+          on a balanced 2,600-record subset with a gated coarse-to-fine protocol that locates each error at source
+          routing, fine-grained classification, or output format, and add a paired silent-audio control to test whether
+          the waveform is actually used. Nine open LALMs, evaluated without task-specific adaptation, reach only
+          2.0%&ndash;13.1% leaf accuracy, against a random reference of 7.7%. The waveform helps source routing far
+          more than leaf recognition (for one model, +29.5 versus +2.3 points over silence), and just four models gain
+          reliably at the leaf level, by at most 4.7 points. UA-Bench thus gives a reference point for these models, and
+          its released training partition supports follow-up adaptation work.
+        </p>
       </div>
     </div>
   </section>
@@ -342,7 +338,7 @@
   <!-- Results -->
   <section class="hero is-small" id="results">
     <div class="hero-body">
-      <div class="container">
+      <div class="container is-max-desktop">
         <h2 class="title is-3">Results</h2>
         <div class="results-carousel">
           <div class="rc-viewport">
@@ -565,7 +561,7 @@
   <!-- End BibTeX citation -->
 
   <footer class="footer">
-    <div class="container">
+    <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column is-8">
           <div class="content">
