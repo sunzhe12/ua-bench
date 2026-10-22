@@ -1,10 +1,45 @@
-# UA-Bench
+<div align="center">
 
-**Project page:** https://sunzhe12.github.io/ua-bench/ ·
-**Paper:** https://arxiv.org/abs/2610.16942 ·
-**Dataset:** https://huggingface.co/datasets/zhesun12/water
+<p><img src="assets/readme-seu.svg" height="38" align="middle" alt="Southeast University"></p>
 
-A three-level hierarchical classification benchmark for underwater acoustic signals. This repository contains the **evaluation framework**: it reads the released dataset, asks the three fixed questions embedded in each record, then parses and scores the answers.
+<h1>UA-Bench: Benchmarking Large Audio-Language Models<br>on Underwater Acoustic Recognition</h1>
+
+[![Paper](https://img.shields.io/badge/Paper-arXiv-b31b1b.svg)](https://arxiv.org/abs/2610.16942)
+[![Project page](https://img.shields.io/badge/Project-Page-0e7490.svg)](https://sunzhe12.github.io/ua-bench/)
+[![Eval Data](https://img.shields.io/badge/Eval%20Data-2%2C600-0891b2.svg)](https://huggingface.co/datasets/zhesun12/water)
+[![Full Data](https://img.shields.io/badge/Full%20Data-375%2C051-155e75.svg)](https://huggingface.co/datasets/zhesun12/water_all)
+[![Tests](https://img.shields.io/badge/Tests-41%20passing-0f766e.svg)](#tests)
+[![License](https://img.shields.io/badge/License-MIT-2da44e.svg)](LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/sunzhe12/ua-bench?style=social)](https://github.com/sunzhe12/ua-bench/stargazers)
+
+</div>
+
+<p align="center">
+  <img src="docs/static/images/teaser.jpg" width="100%" alt="UA-Bench teaser: the three signal families (sonar interpretation, underwater communications, vessel monitoring, AUV acoustic awareness) feed a hierarchical recognition benchmark of 375,051 records, 13 leaf classes and 2,600 evaluation examples, with dataset composition, label space, a concrete 2FSK example and the three diagnostic questions.">
+</p>
+
+<p align="center">
+  <strong>To our knowledge, the first large-scale benchmark of large audio-language models (LALMs) on underwater acoustic signal recognition.</strong><br>
+  375,051 synthetic records · a three-level hierarchy with 13 leaf classes · a gated coarse-to-fine protocol<br>
+  <a href="https://sunzhe12.github.io/ua-bench/">Explore the project page →</a>
+</p>
+
+---
+
+UA-Bench pairs parameterized signal sources with modeled multipath propagation, so that every
+record can be traced to the conditions that produced it. This repository contains the
+**evaluation framework**: it reads the released dataset, asks the three fixed questions embedded
+in each record, then parses and scores the answers.
+
+| | |
+|:--|:--|
+| Records | 375,051 synthetic audio records with full source and channel metadata |
+| Evaluation subset | 2,600 balanced records (13 classes × 200) |
+| Hierarchy | 3 levels: source activity → signal family → 13 leaf classes |
+| Models | 9 open LALMs evaluated without task-specific adaptation |
+| Headline result | 2.0–13.1% leaf accuracy, against a random reference of 7.7% |
+
+## Taxonomy
 
 | Level | Values |
 |---|---|
@@ -27,9 +62,11 @@ testsite/
 
 ## Dataset
 
-The evaluation set is published on Hugging Face and is **not stored in this repository** (the archive is far above GitHub's 100 MB file limit):
+The datasets are published on Hugging Face and are **not stored in this repository**
+(the full archive is far above GitHub's 100 MB file limit):
 
-- [`zhesun12/water`](https://huggingface.co/datasets/zhesun12/water) — `testset_export_v2.tar.gz`, 2600 records, 13 classes x 200, about 2.2 GB.
+- [`zhesun12/water`](https://huggingface.co/datasets/zhesun12/water) — the evaluation subset, `testset_export_v2.tar.gz`, 2,600 records, 13 classes × 200, about 2.2 GB.
+- [`zhesun12/water_all`](https://huggingface.co/datasets/zhesun12/water_all) — the full dataset, 375,051 records (train / val / test splits plus metadata), for follow-up adaptation work.
 
 ```bash
 bash testsite/scripts/download_water_testset.sh                # extracts into ./testset_export
@@ -158,7 +195,28 @@ Replace `CONTROL_DIR` with the directory printed by step 1. Differences are defi
 python -m unittest discover -s testsite/tests
 ```
 
-The test suite is the executable specification of the parsing, gating, scoring and integrity rules enforced by the framework.
+The suite runs 41 regression checks and is the executable specification of the parsing, gating, scoring and integrity rules enforced by the framework.
+
+<details>
+<summary>Citation</summary>
+
+```bibtex
+@misc{sun2026uabench,
+  title         = {UA-Bench: Benchmarking Large Audio-Language Models on Underwater Acoustic Recognition},
+  author        = {Sun, Zhe and An, Liang and Yao, Jiayu and Qian, Ronglai and Cai, Jianing
+                   and Huang, Ziwei and Fan, Qing and Yang, Zhiyuan and Cai, Yujun and Cao, Hongli
+                   and Wang, Yiwei and Wang, Xiaoyan},
+  year          = {2026},
+  eprint        = {2610.16942},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.SD},
+  note          = {Under review},
+  doi           = {10.48550/arXiv.2610.16942},
+  url           = {https://sunzhe12.github.io/ua-bench/}
+}
+```
+
+</details>
 
 ## License
 
@@ -168,3 +226,4 @@ MIT — see [LICENSE](LICENSE).
 
 - The test set is a **diagnostic subset collected under favourable conditions** (the top 200 per class by channel gain and source SNR). It does not represent the full range of sea states or operational conditions.
 - The exact answer format, cascade gating, metric definitions and integrity checks are implemented in `testsite/core/` and covered by `testsite/tests/`. Merging refuses a partial set of samples: a full-manifest evaluation cannot be substituted by a subset.
+- The training partition of the full dataset (`zhesun12/water_all`) is released for follow-up adaptation work.

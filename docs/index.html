@@ -118,6 +118,23 @@
 </head>
 <body>
 
+  <!-- Sticky top navigation -->
+  <header class="site-header">
+    <nav class="nav-wrap" aria-label="Main navigation">
+      <a class="project-brand" href="#top">
+        <img src="static/images/favicon-180.png" alt="" width="32" height="32">
+        <span>UA-Bench</span>
+      </a>
+      <div class="nav-links">
+        <a href="#top">Overview</a>
+        <a href="#results">Results</a>
+        <a href="#examples">Examples</a>
+        <a href="#BibTeX">Citation</a>
+      </div>
+      <a class="nav-paper" href="https://arxiv.org/abs/2610.16942" target="_blank" rel="noopener">Paper &#8599;</a>
+    </nav>
+  </header>
+
   <!-- Scroll to Top Button -->
   <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
     <i class="fas fa-chevron-up"></i>
@@ -149,11 +166,15 @@
   -->
 
   <main id="main-content">
-  <section class="hero has-backdrop">
+  <section class="hero has-backdrop" id="top">
     <div class="hero-body">
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
+            <div class="institution-banner">
+              <img class="institution-symbol" src="static/images/southeast-university-symbol.svg" width="52" height="52" alt="">
+              <span class="institution-name">Southeast University</span>
+            </div>
             <h1 class="title is-1 publication-title">UA-Bench: Benchmarking Large Audio-Language Models on Underwater Acoustic Recognition</h1>
 
             <div class="is-size-5 publication-authors">
@@ -172,7 +193,7 @@
             </div>
 
             <div class="is-size-5 publication-authors">
-              <span class="author-block">Southeast University<br>Under Review</span>
+              <span class="author-block">Under Review</span>
               <span class="eql-cntrb"><small><br><sup>&sect;</sup>Corresponding Author</small></span>
             </div>
 

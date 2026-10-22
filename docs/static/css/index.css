@@ -1010,3 +1010,130 @@ a:focus {
 
 
 
+
+/* ------------------------------------------------------------------
+   Sticky top navigation + institution banner
+   ------------------------------------------------------------------ */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  height: 60px;
+  background: rgb(255 255 255 / 0.9);
+  -webkit-backdrop-filter: saturate(180%) blur(10px);
+  backdrop-filter: saturate(180%) blur(10px);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.nav-wrap {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  max-width: 1152px;
+  margin: 0 auto;
+  padding: 0 24px;
+  gap: 24px;
+}
+
+.project-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--primary-color);
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.project-brand img {
+  width: 32px;
+  height: 32px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 22px;
+  margin-left: auto;
+}
+
+.nav-links a {
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.nav-links a:hover {
+  color: var(--primary-color);
+}
+
+.nav-paper {
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: var(--gradient-primary);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.nav-paper:hover {
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Institution banner in the hero */
+.institution-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 1.1rem;
+}
+
+.institution-symbol {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+  flex: 0 0 52px;
+}
+
+.institution-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+/* Keep anchored sections clear of the sticky header */
+section[id] {
+  scroll-margin-top: 76px;
+}
+
+@media (max-width: 900px) {
+  .site-header {
+    height: 54px;
+  }
+  .nav-wrap {
+    padding: 0 16px;
+    gap: 12px;
+  }
+  .nav-links {
+    display: none;
+  }
+  .nav-paper {
+    margin-left: auto;
+  }
+  .institution-symbol {
+    width: 44px;
+    height: 44px;
+    flex-basis: 44px;
+  }
+  section[id] {
+    scroll-margin-top: 70px;
+  }
+}
